@@ -1,0 +1,42 @@
+{% extends 'stc/base.html' %}
+{% block title %} Update Profile {% endblock %}
+{% block content %}
+<div class="container">
+	<div class="card col-md-8 mt-4 shadow-lg mx-auto">
+		<h3 class="bg-light text-danger text-center mt-2 border rounded p-2">Update Your Details</h3>
+		<div class="card-body">
+			<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="row">
+					<div class="col">
+					<table class="table table-borderless">
+					{% for k in us %}
+						<tr>
+							<td>{{k}}</td>
+						</tr>
+					{% endfor %}
+					</table>	
+				</div>
+				<div class="col">
+					<table class="table table-borderless">
+					{% for j in imp %}
+					<tr>
+						<td>{{j}}</td>
+					</tr>
+					{% endfor %}
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<a href="{% url 'profile' %}" class="btn btn-secondary btn-block text-center my-2">Back</a>
+				</div>
+				<div class="col">
+					<input type="submit" value="Update" class="btn btn-success my-2 btn btn-block">
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

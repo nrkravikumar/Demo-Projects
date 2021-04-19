@@ -1,0 +1,61 @@
+{% extends 'stc/base.html' %}
+{% block title %} Home {% endblock %}
+{% block content %}
+<div class="container">
+{% if messages %}
+	{% for j in messages %}
+	<div class="alert alert-{{j.tags}} alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{j}}
+</div>
+<!-- <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+  <div class="toast-header">
+    {{j.tags}}
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    {{j}}
+  </div>
+</div> -->
+
+	{% endfor %}
+{% endif %}
+  <div class="row mt-4">
+    <div class="card col-md-7 mx-1" style='background-color:floralwhite'>
+      <h3>Note Sharing</h3>
+    </div>
+    <div class="card col mx-1">
+      <h3 class="bg-info text-danger text-center border rounded p-2 mt-3">User Details</h3>
+      {% for k in m %}
+      {% if forloop.counter < 3 %}
+      <div class="card my-2 bg-dark text-light border rounded">
+        <div class="row card-body">
+          <div class="col col-sm-3">
+            <img src="{{k.0.url}}" class="mt-1 rounded-circle" style="width:70px;height:70px">  
+          </div>
+         <div class="col mt-1">
+           <h5>{{k.1}}</h5>
+           <h5>{{k.2}}</h5>
+         </div> 
+        </div>
+        <div class="row mx-3 mb-3">
+          <div class="col col-sm">
+             <a href="#" class="btn btn-secondary btn-block">Info</a>
+           </div>
+           <div class="col col-sm">
+             <a href="#" class="btn btn-success btn-block">Request</a>
+           </div>
+           <div class="col col-sm">
+             <a href="#" class="btn btn-danger btn-block">Cancel</a>
+           </div>
+         </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'stc/base.html' %}
+{% block title %}dashboard{% endblock %}
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="card col-md-8 mt-4 mx-1">
+			<div class="row">
+				<div class="col">
+					<input class="form-control col-sm mt-3" id="myInput" type="text" placeholder="Search..">
+				</div>
+				<div class="col">
+				<a href="#" class="btn btn-danger float-right mt-3 col-md-2">Add</a>	
+				</div>
+			</div>
+			<table class="table table-borderless mt-3">
+				<tr class="bg-dark text-light text-center border rounded">
+					<td>sno</td>
+					<td>Username</td>
+					<td>Emailid</td>
+					<td>Date of Join</td>
+				</tr>
+				<tbody id="myTable">
+				{% for j in pg %}
+				<tr>
+					<td>{{forloop.counter}}</td>
+					<td>{{j.username}}</td>
+					<td>{{j.email}}</td>
+					<td>{{j.date_joined}}</td>
+				</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+			<div class="">
+				Showing Page {{pg.number}} of {{pg.paginator.num_pages}}
+			</div>
+			<ul class="pagination float-right ml-auto">
+				{% if pg.has_previous %}
+				<li {% if pg.number == 1 %} class="page-item active" {% endif %}><a class="page-link" href="?page=1"><<</a>
+				</li>
+				<li class="page-item"><a class="page-link" href="?page={{ pg.previous_page_number }}">Previous</a>	
+				</li>
+				{% endif %}
+				{% if pg.has_next %}
+				<li class="page-item"><a class="page-link" href="?page={{pg.next_page_number }}">Next</a></li>
+				<li class="page-item"><a class="page-link" href="?page={{ pg.paginator.num_pages }}">>></a>
+				</li>
+				{% endif %}
+			</ul>
+		</div>
+		<div class="card col-md-3 mt-4 mx-1">
+			<h3>Users</h3>
+		</div>
+	</div>
+</div>
+<!-- <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+ -->
+
+{% endblock %}
